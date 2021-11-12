@@ -1,5 +1,5 @@
 import React from "react";
-import { StatusBar, SafeAreaView } from "react-native";
+import { FlatList, StatusBar, SafeAreaView } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.components";
 import styled from "styled-components";
@@ -13,18 +13,27 @@ const RestaurantsScreenSearch = styled.View`
   padding: ${(props) => props.theme.space[3]};
 `;
 
-const RestaurantsScreenList = styled.View`
+/* const RestaurantsScreenList = styled.View`
   flex: 1;
   padding: ${(props) => props.theme.space[3]};
-`;
+`; */
 
 export const RestaurantsScreen = () => (
   <RestaurantsScreenContainer>
     <RestaurantsScreenSearch>
       <Searchbar />
     </RestaurantsScreenSearch>
-    <RestaurantsScreenList>
-      <RestaurantInfoCard />
-    </RestaurantsScreenList>
+    <FlatList 
+      contentContainerStyle={{padding: 16}}
+      data={[{name: 1}, {name: 2}, {name: 3}, {name: 4}, {name: 5}, {name: 6}, {name: 7}, {name: 8}, {name: 9}, {name: 10}]}
+      keyExtractor={(item) => item.name}
+      renderItem={() => <RestaurantInfoCard/>}
+    />
+{/*     <FlatList 
+      contentContainerStyle={{padding: 16}}
+      data={[{name: 1}, {name: 2}, {name: 3}, {name: 4}, {name: 5}, {name: 6}, {name: 7}, {name: 8}, {name: 9}, {name: 10}]}
+      keyExtractor={(item) => item.name}
+      renderItem={() => <Spacer position="bottom" size="large"><RestaurantInfoCard/></Spacer>}
+    /> */}
   </RestaurantsScreenContainer>
 );
