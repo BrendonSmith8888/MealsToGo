@@ -1,13 +1,13 @@
 import styled from "styled-components/native";
-import { Card, Text } from "react-native-paper";
+import { Card } from "react-native-paper";
 
-export const Address = styled(Text)`
+export const Address = styled.Text`
   font-family: ${(props) => props.theme.fonts.body};
   font-size: ${(props) => props.theme.fontSizes.caption};
 `;
 
 export const Icon = styled.Image`
-height: 15px
+height: 15px;
 width: 15px;
 `;
 
@@ -23,8 +23,6 @@ export const Rating = styled.View`
 
 export const RestaurantCard = styled(Card)`
   background-color: ${(props) => props.theme.colors.bg.primary};
-  elevation: 5;
-  margin-bottom: ${(props) => props.theme.space[3]};
 `;
 
 export const RestaurantCardCover = styled(Card.Cover)`
@@ -41,7 +39,6 @@ export const SectionEnd = styled.View`
   flex: 1;
   flex-direction: row;
   justify-content: flex-end;
-  paddingLeft: 16px;
 `;
 
 /* export const Title = styled(Text)`
