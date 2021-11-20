@@ -4,7 +4,7 @@ import { Text } from "react-native-paper";
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/Theme";
 import { RestaurantsScreen } from "./src/features/restaurants/screens/restaurants.screen";
-import { RestaurantsScreenContainer } from "./src/components/utility/safe-area.component";
+import { RestaurantsScreenContainer, SafeArea } from "./src/components/utility/safe-area.component";
 import {
   useFonts as useOswald,
   Oswald_400Regular,
@@ -18,15 +18,15 @@ import { RestaurantsContextProvider } from "./src/services/restaurants/restauran
 const Tab = createBottomTabNavigator();
 
 const TAB_ICON = {
-  Restaurants: "restaurants",
+  Restaurants: "md-restaurant",
   Map: "md-map",
   Settings: "settings",
 };
 
 const Map = () => (
-  <RestaurantsScreenContainer>
+  <SafeArea>
     <Text>Map</Text>
-  </RestaurantsScreenContainer>
+  </SafeArea>
 );
 const createScreenOptions = ({ route }) => {
   const iconName = TAB_ICON[route.name];
@@ -37,9 +37,9 @@ const createScreenOptions = ({ route }) => {
   };
 };
 const Settings = () => (
-  <RestaurantsScreenContainer>
+  <SafeArea>
     <Text>Settings</Text>
-  </RestaurantsScreenContainer>
+  </SafeArea>
 );
 /* const tabBarIcon = (iconName) => ({}) => <Ionicons name={iconName} size={size} color={color} />; */
 
