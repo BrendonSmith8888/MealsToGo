@@ -9,7 +9,7 @@ import { Spacer } from "../../../components/spacer/spacer.component";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 
 import { Search } from "../components/search.component";
-import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
+import { RestaurantInfoCard } from "../components/restaurant-info-card.components";
 
 const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: {
