@@ -1,50 +1,38 @@
-import styled from "styled-components/native";
+import React from "react";
+import styled, { useTheme } from "styled-components/native";
 
-const defaultTextStyles = (theme) => `
-  font-family: ${theme.fonts.body};
-  font-weight: ${theme.fontWeights.regular};
-  color: ${theme.colors.text.primary};
-  flex-wrap: wrap;
-  margin-top: 0px;
-  margin-bottom: 0px;
-`;
-
-const body = (theme) => `
-    font-size: ${theme.fontSizes.body};
-`;
-
-const hint = (theme) => `
-    font-size: ${theme.fontSizes.body};
-`;
-
-const error = (theme) => `
-    color: ${theme.colors.text.error};
-`;
-
-const caption = (theme) => `
-    font-size: ${theme.fontSizes.caption};
-    font-weight: ${theme.fontWeights.bold};
-`;
-
-const label = (theme) => `
-    font-family: ${theme.fonts.heading};
-    font-size: ${theme.fontSizes.body};
-    font-weight: ${theme.fontWeights.medium};
-`;
-
-const variants = {
-  body,
-  label,
-  caption,
-  error,
-  hint,
+const sizeVariant = {
+  small: 1,
+  medium: 2,
+  large: 3,
 };
 
-export const Text = styled.Text`
-  ${({ theme }) => defaultTextStyles(theme)}
-  ${({ variant, theme }) => variants[variant](theme)}
+const positionVariant = {
+  top: "marginTop",
+  left: "marginLeft",
+  right: "marginRight",
+  bottom: "marginBottom",
+};
+
+const getVariant = (position, size, theme) => {
+  const sizeIndex = sizeVariant[size];
+  const property = positionVariant[position];
+  const value = theme.space[sizeIndex];
+
+  return `${property}:${value}`;
+};
+
+const SpacerView = styled.View`
+  ${({ variant }) => variant};
 `;
 
-Text.defaultProps = {
-  variant: "body",
+export const Spacer = ({ position, size, children }) => {
+  const theme = useTheme();
+  const variant = getVariant(position, size, theme);
+  return <SpacerView variant={variant}>{children}</SpacerView>;
+};
+
+Spacer.defaultProps = {
+  position: "top",
+  size: "small",
 };

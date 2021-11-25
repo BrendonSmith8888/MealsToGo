@@ -2,7 +2,8 @@ import React from "react";
 import { SvgXml } from "react-native-svg";
 
 import { Spacer } from "../../../components/spacer/spacer.component";
-import { Text } from "../../../components/typography/text.component";
+// import { Text } from "../../../components/typography/text.component";
+import { Text } from "react-native-paper";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
 
