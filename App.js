@@ -1,7 +1,13 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ThemeProvider } from "styled-components/native";
-import * as firebase from "firebase";
+/* import * as firebase from "firebase"; */
+import { getApps, initializeApp } from "firebase/app";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import {
   useFonts as useOswald,
   Oswald_400Regular,
@@ -19,12 +25,35 @@ const firebaseConfig = {
   messagingSenderId: "308173163183",
   appId: "1:308173163183:web:767d8eaaabc852eba6625a",
 };
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-if (!firebase.apps.length) {
+export const loginRequest = async (email, password) =>
+  signInWithEmailAndPassword(auth, email, password);
+/* if (getApps().length < 1) {
+  initializeApp(firebaseConfig);
+} */
+
+/* if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
-}
+} */
 
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      signInWithEmailAndPassword(auth, "<email>", "<password>")
+        .then((user) => {
+          console.log(user);
+          setIsAuthenticated(true);
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    }, 5000);
+  }, []);
+
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,
   });
