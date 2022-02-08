@@ -14,7 +14,7 @@ import {
   PaymentProcessing,
 } from "../components/checkout.styles";
 import { RestaurantInfoCard } from "../../restaurants/components/restaurant-info-card.component";
-import { List } from "react-native-paper";
+import { List, Divider } from "react-native-paper";
 import { payRequest } from "../../../services/checkout/checkout.service";
 
 export const CheckoutScreen = ({ navigation }) => {
@@ -66,12 +66,19 @@ export const CheckoutScreen = ({ navigation }) => {
             <Text> Your Order</Text>
           </Spacer>
           <List.Section>
-            {cart.map((item, price) => {
-              return <List.Item title={`${item} - ${price / 100}`} />;
+            {cart.map(({ item, price }, i) => {
+              return (
+                <List.Item
+                  title={`${item} - ${price / 100}`}
+                  key={`item-${i}`}
+                />
+              );
             })}
           </List.Section>
           <Text>Total: {sum / 100}</Text>
         </Spacer>
+        <Spacer position={"top"} size={"large"} />
+        <Divider />
         <NameInput
           label="Name"
           value={name}
